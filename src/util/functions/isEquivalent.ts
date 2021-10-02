@@ -16,7 +16,9 @@ export default function isEquivalent(a: any, b: any) {
 		//* If values of same property are not equal,
 		//* objects are not equivalent
 		if (a[propName] !== b[propName]) {
-			return false;
+			if (typeof a[propName] == "object" && typeof b[propName] == "object") {
+				if (!isEquivalent(a[propName], b[propName])) return false;
+			} else return false;
 		}
 	}
 
